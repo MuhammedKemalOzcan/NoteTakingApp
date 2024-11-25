@@ -4,7 +4,7 @@ import DisplayNote from "../components/DisplayNote";
 import ListNotes from "../components/ListNotes";
 
 
-function Notes() {
+function Notes({chooseTags=[]}) {
 
     const [isActive, setIsactive] = useState(false);
     const [data, setData] = useState([])
@@ -27,7 +27,7 @@ function Notes() {
             </div>
             <div className="flex">
                 <ListNotes setIsactive={setIsactive} data={data} />
-                <DisplayNote isActive={isActive} setIsActive={setIsactive} onSave={onSave} />
+                <DisplayNote isActive={isActive} setIsActive={setIsactive} onSave={onSave} chooseTags={chooseTags} />
                 <ArchiveNote />
             </div>
 

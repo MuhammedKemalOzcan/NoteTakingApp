@@ -13,7 +13,7 @@ import {
     ListItemPrefix,
 } from "@material-tailwind/react";
 
-function Navbar() {
+function Navbar({ sendTags }) {
 
     const [inputValue, setInputValue] = useState("");
     const [tags, setTags] = useState([]);
@@ -23,6 +23,7 @@ function Navbar() {
         e.preventDefault();
         setTags([...tags, inputValue]);
         setInputValue("");
+        sendTags(tags);
     }
 
 

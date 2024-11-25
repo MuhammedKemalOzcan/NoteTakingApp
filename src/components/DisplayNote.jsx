@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from "@material-tailwind/react";
 
-function DisplayNote({ isActive, setIsActive, onSave, chooseTags }) {
+function DisplayNote({ isActive, setIsActive, onSave, chooseTags = [] }) {
 
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
-
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -13,7 +13,6 @@ function DisplayNote({ isActive, setIsActive, onSave, chooseTags }) {
         setTitle("");
         setDesc("");
         setIsActive(false);
-
     }
 
     return (
@@ -34,6 +33,13 @@ function DisplayNote({ isActive, setIsActive, onSave, chooseTags }) {
                             value={desc}
                             onChange={(e) => setDesc(e.target.value)}
                         />
+                        {
+                            chooseTags.length > 0 ? chooseTags.map((tag, index) => (
+                                <p key={index} >{tag}</p>
+                            ))
+                                :
+                                <p>Henüz tag tanımlanmamış</p>
+                        }
                         <Button
                             color="blue"
                             type='submit'

@@ -8,13 +8,16 @@ function App() {
 
   const [chooseTags, setChooseTags] = useState([]);
 
+  const sendTags = (tags) => {
+    setChooseTags(tags);
+  }
 
   return (
     <div className='flex'>
 
-      <Navbar />
+      <Navbar sendTags={sendTags} />
       <Routes>
-        <Route path="/notes" element={<Notes />}></Route>
+        <Route path="/notes" element={<Notes chooseTags={chooseTags} />}></Route>
       </Routes>
     </div>
   )
