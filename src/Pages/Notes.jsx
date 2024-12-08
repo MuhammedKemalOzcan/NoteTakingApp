@@ -2,17 +2,16 @@ import { useState } from "react";
 import ArchiveNote from "../components/ArchiveNote";
 import DisplayNote from "../components/DisplayNote";
 import ListNotes from "../components/ListNotes";
+import ManageNotes from "../components/ManageNotes";
 
 
-function Notes({chooseTags=[]}) {
+function Notes() {
 
     const [isActive, setIsactive] = useState(false);
-    const [data, setData] = useState([])
+    const [selectedNote, setSelectedNote] = useState([]);
 
-    const onSave = (title, desc) => {
-        setData([...data, { title, desc }]);
-        console.log("title : ", title);
-        console.log("desc : ", desc);
+    const onDisplay = (note) => {
+        setSelectedNote(note);
     }
 
     return (
@@ -26,8 +25,9 @@ function Notes({chooseTags=[]}) {
                 />
             </div>
             <div className="flex">
-                <ListNotes setIsactive={setIsactive} data={data} />
-                <DisplayNote isActive={isActive} setIsActive={setIsactive} onSave={onSave} chooseTags={chooseTags} />
+                <ListNotes setIsactive={setIsactive} isActive={isActive} onDisplay={onDisplay} selectedNote={selectedNote} />
+                <DisplayNote isActive={isActive} setIsActive={setIsactive} selectedNote={selectedNote} setSelectedNote={setSelectedNote} />
+                {/* <ManageNotes isActive={isActive} /> */}
                 <ArchiveNote />
             </div>
 
